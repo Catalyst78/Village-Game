@@ -147,6 +147,7 @@ img {
 	float:left;
 	width:100%;
 	border-top:1px solid #000;
+	background: #F3F3F3;
 }
 #footer p {
 	padding:10px;

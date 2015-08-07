@@ -1,14 +1,15 @@
 var intervalCount = 0;
 
 function init() {
+	clearAllData()
 	prepareTabs();
 	clearConsole();
 
 	if ((localStorage.getItem("save") !== null )) 
 		loadGame();	
 		
-  // stop firefox from carrying over disabled tag on refresh
-	document.getElementById("territory_button").disabled = false;
+	// stop firefox from carrying over disabled tag on refresh
+	// document.getElementById("territory_button").disabled = false;
 	
   window.setInterval(function() {
 		if (incrementMe.resource !== "") {
@@ -26,7 +27,6 @@ function init() {
 
 // Main
 var DEFAULT_RESOURCES = {
-	territory:0
 };
 var resources = DEFAULT_RESOURCES;
 
@@ -79,33 +79,21 @@ function updateAll() {
 // Buttons
 var selectedButton = "";
 
-function gridSpaceClick(space) {
-	document.getElementById("btn" + space).src = "images/square2.png";
-	document.getElementById("btn" + space).style.top = 123;
-	document.getElementById("btn" + space).style.left = 123;
+function gridSpaceClick(buttonId) {
+	buttonDeselect(selectedButton);
+	selectedButton = "btn" + buttonId;
+	
+	document.getElementById(selectedButton).disabled = true;
+	document.getElementById(selectedButton).src = "images/square2.png";
 }
 
 function explore() {
 	buttonClicked("territory");
 };
 
-function buttonClicked(buttonResourceString) {
-	intervalCount = 0;
-	updateResourceText(buttonResourceString);
-	showResourceText(buttonResourceString);
-	selectedButton = buttonResourceString;
-	incrementMe.resource = buttonResourceString;
-	incrementMe.number = 1;
-	document.getElementById(buttonResourceString + "_button").disabled = true;
-	document.getElementById(buttonResourceString + "_button").innerHTML = '<img class="nopadd" src="images/bunny.gif">';
-}
-
-function buttonDeselect(buttonResourceString) {
-	if (buttonResourceString != "") {
-		incrementMe = DEFAULT_INCREMENT_ME;
-		document.getElementById(buttonResourceString + "_button").disabled = false;
-		document.getElementById(buttonResourceString + "_button").innerHTML = "Explore!<br><br>";
-		selectedButton = "";
+function buttonDeselect(buttonId) {
+	if (buttonId != "") {
+		document.getElementById(buttonId).src = "images/square.png";
 	}
 }
 
@@ -144,7 +132,6 @@ function updateConsole(newLine) {
 		datConsoleText += consoleList[a] + "<br>";
 	document.getElementById("bunnyConsole").innerHTML = datConsoleText;
 }
-
 
 // Save & Load
 function saveGame() {
@@ -219,36 +206,30 @@ function tabContentHide(content) {
 }
 
 function tabClicked() {
-  showTab(getHash(this.getAttribute('href')));
+	showTab(getHash(this.getAttribute('href')));
 }
 
 function showTab(tabId) {
-  for ( var id in contentDivs ) {
-    if ( id == tabId ) {
-      tabLinks[id].className = 'selected';
-      contentDivs[id].className = 'tabContent';
-    } else {
-      tabLinks[id].className = '';
-      contentDivs[id].className = 'tabContent hide';
-    }
-  }
-  return false;
+	for ( var id in contentDivs ) {
+		if ( id == tabId ) {
+			tabLinks[id].className = 'selected';
+			contentDivs[id].className = 'tabContent';
+		} else {
+			tabLinks[id].className = '';
+			contentDivs[id].className = 'tabContent hide';
+		}
+	}
+	return false;
 }
 
 function getFirstChildWithTagName(element, tagName) {
-  for ( var i = 0; i < element.childNodes.length; i++ ) {
-    if ( element.childNodes[i].nodeName == tagName ) 
+	for ( var i = 0; i < element.childNodes.length; i++ ) {
+		if ( element.childNodes[i].nodeName == tagName ) 
 			return element.childNodes[i];
-  }
+	}
 }
 
 function getHash(url) {
-  var hashPos = url.lastIndexOf ( '#' );
-  return url.substring( hashPos + 1 );
-}
-
-var totalTabs = 48;
-function tellThing(tabClicked) {
-	for (var a = 1; a <= totalTabs; a++)
-		document.getElementById("ug" + a).innerHTML = a;
+	var hashPos = url.lastIndexOf ( '#' );
+	return url.substring( hashPos + 1 );
 }
