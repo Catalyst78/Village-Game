@@ -5,11 +5,9 @@ ul#tabs li a {
 ul#tabs li a:hover { 
 	background-color: #f1f0ee; 
 }
-
 div.tabContent.hide { 
 	display: none;
 }
-
 .mygridthing{
 	width: 100%;
 	float: left;
@@ -17,13 +15,11 @@ div.tabContent.hide {
 	margin: 0 0 0 0.54%;
 	line-height: 0px;
 }
-
 .mygridthing img{
 	float: left;
 	padding: 0px;
 	margin: 0px;
 }
-
 .maparea{
 	width: 600px;
 	height: 600px;
@@ -32,4 +28,13 @@ div.tabContent.hide {
 	float: left;
 	padding: 0em;
 	margin: 0 0 0 1.4%;
+}
+div#tipDiv {
+    font-size:11px; 
+	line-height:1.2;
+    color:#000; 
+	background-color:#E1E5F1; 
+    border:1px solid #667295; 
+	padding:4px; 
+    width:210px;
 }

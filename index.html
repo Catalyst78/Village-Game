@@ -9,6 +9,24 @@
 	<link rel="stylesheet" type="text/css" href="css/layout.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="css/gridstyle.css" media="screen" />
 	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/tooltip.js"></script>
+	
+	<script type="text/javascript">
+		dw_Tooltip.defaultProps = {
+			//activateOnClick: true,
+			//supportTouch: true // false by default
+		}
+
+		// Problems, errors? See http://www.dyn-web.com/tutorials/obj_lit.php#syntax
+
+		dw_Tooltip.content_vars = {
+			L1: 'Some text in the tooltip for link 1',
+			L2: 'The tooltip can contain <strong><em>Rich HTML</em></strong>',
+			L3: '<div style="text-align:center"><img src="images/dot-com-btn.gif" /></div>',
+			L4: 'You can have a tooltip pop up when hovering over an image too!'
+		}
+
+	</script>
 </head>
 
 <body onload="init()">
@@ -28,10 +46,10 @@
 					<div class="tabContent" id="main_tab" ng-controller="MainController">
 						<br />
 						<div class="mygridthing">
-							<img onclick="gridSpaceClick(1)" id="btn1" src="images/square.png">
-							<img onclick="gridSpaceClick(2)" id="btn2" src="images/square.png">
-							<img onclick="gridSpaceClick(3)" id="btn3" src="images/square.png">
-							<img onclick="gridSpaceClick(4)" id="btn4" src="images/square.png">
+							<img onclick="gridSpaceClick(1)" class="showTip L1" id="btn1" src="images/square.png">
+							<img onclick="gridSpaceClick(2)" class="showTip L2" id="btn2" src="images/square.png">
+							<img onclick="gridSpaceClick(3)" class="showTip L3" id="btn3" src="images/square.png">
+							<img onclick="gridSpaceClick(4)" class="showTip L4" id="btn4" src="images/square.png">
 							<img onclick="gridSpaceClick(5)" id="btn5" src="images/square.png">
 							<img onclick="gridSpaceClick(6)" id="btn6" src="images/square.png">
 							<img onclick="gridSpaceClick(7)" id="btn7" src="images/square.png">
